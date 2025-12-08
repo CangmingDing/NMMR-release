@@ -1,4 +1,4 @@
-# nasalMicrobiomeMR: 鼻黏膜菌群孟德尔随机化分析工具包
+# NMMR: 鼻黏膜菌群孟德尔随机化分析工具包
 
 ## 简介
 **NMMR** 是一个专为鼻黏膜菌群 MR 分析设计的一站式 R 包。它集成了数据标准化、批量 MR 分析以及结果 Meta 分析功能，旨在简化繁琐的分析流程，让研究者能专注于生物学意义的挖掘。
@@ -44,7 +44,7 @@
 本包为保护核心算法，仅提供编译后的二进制安装包。
 
 ### 1. 下载安装包
-请前往 GitHub 仓库的文件列表或 Releases 页面下载对应系统的安装包：
+请前往 GitHub 仓库（https://github.com/CangmingDing/NMMR-release/）的文件列表或 Releases 页面下载对应系统的安装包：
 - **Windows 用户**: 下载 `NMMR-binary-windows-latest.zip`
 - **Mac 用户**: 下载 `NMMR-binary-macos-latest.zip` (或 .tgz)
 
