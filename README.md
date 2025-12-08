@@ -1,7 +1,7 @@
-# NMMR: 鼻黏膜菌群孟德尔随机化分析工具包
+# nasalMicrobiomeMR: 鼻黏膜菌群孟德尔随机化分析工具包
 
 ## 简介
-**NMMR** 是一个专为鼻黏膜菌群 MR 分析设计的一站式 R 包。它集成了数据标准化、批量 MR 分析（基于内置鼻黏膜菌群暴露数据）以及结果 Meta 分析功能，旨在简化繁琐的分析流程，让研究者能专注于生物学意义的挖掘。
+**NMMR** 是一个专为鼻黏膜菌群 MR 分析设计的一站式 R 包。它集成了数据标准化、批量 MR 分析以及结果 Meta 分析功能，旨在简化繁琐的分析流程，让研究者能专注于生物学意义的挖掘。
 
 **作者**: 沧溟  
 **邮箱**: 20220123072@bucm.edu.cn
@@ -23,6 +23,7 @@
 
 ### 2. 自动化 MR 分析 (`run_nasal_mr`)
 利用**内置的鼻黏膜菌群暴露数据**，对一个或多个结局数据进行批量 MR 分析。
+- **数据安全**: 核心暴露数据经过 AES 加密，需使用激活码解锁分析功能。
 - **流程**:
     - 自动读取内置暴露数据。
     - 自动与用户提供的结局数据进行 Harmonize（对齐）。
@@ -40,17 +41,67 @@
 
 ## 安装说明
 
-由于这是一个本地包，请使用以下方式安装：
+本包为保护核心算法，仅提供编译后的二进制安装包。
+
+### 1. 下载安装包
+请前往 GitHub 仓库的文件列表或 Releases 页面下载对应系统的安装包：
+- **Windows 用户**: 下载 `NMMR-binary-windows-latest.zip`
+- **Mac 用户**: 下载 `NMMR-binary-macos-latest.zip` (或 .tgz)
+
+> **注意**: 请直接下载文件，不要解压！
+
+### 2. 本地安装
+下载完成后，在 R 中运行以下命令进行安装（请替换为实际文件路径）：
 
 ```r
-install.packages("NMMR", repos = NULL, type = "source")
+# Windows 用户
+install.packages("C:/Downloads/NMMR-binary-windows-latest.zip", repos = NULL, type = "binary")
+
+# Mac 用户
+install.packages("~/Downloads/NMMR-binary-macos-latest.zip", repos = NULL, type = "binary")
 ```
 
-*(注：请确保您的 R 环境已安装 `TwoSampleMR`, `data.table`, `dplyr`, `readr`, `RadialMR`, `forestploter` 等依赖包)*
+*(注：安装前请确保已安装 remotes 包以处理依赖，建议先运行 `install.packages("remotes")`)*
+
+---
+
+## 激活与使用
+
+**本包的核心功能受到保护，初次使用需要激活。**
+
+### 1. 获取机器码
+
+安装包后，在 R 中运行以下命令获取您的唯一机器码：
+
+```r
+library(NMMR)
+get_machine_code()
+```
+
+将输出的字符串发送给作者，以获取激活码。
+
+### 2. 永久激活（推荐）
+
+只需运行一次激活函数，后续使用所有功能**无需再输入激活码**。
+
+```r
+# 假设作者提供的激活码为 "abcdef123456..."
+activate_nmmr("abcdef123456...")
+```
+
+### 3. 临时使用（可选）
+
+如果不希望永久激活，也可以在每次调用函数时手动传入 `activation_code` 参数。
+
+```r
+run_nasal_mr(activation_code = "abcdef123456...")
+```
 
 ---
 
 ## 快速上手教程
+
+*(注：以下教程假设您已运行 `activate_nmmr` 完成了永久激活)*
 
 ### 场景一：处理单个原始 GWAS 数据并进行 MR 分析
 
@@ -66,7 +117,6 @@ standardize_gwas(
 )
 
 # 2. 运行 MR 分析
-# 使用内置的鼻黏膜菌群暴露数据，对刚刚生成的结局数据进行分析
 # 结果将保存在当前目录下的 "outcome_std" 文件夹中
 run_nasal_mr(outcome_files = "outcome_std.csv")
 ```
