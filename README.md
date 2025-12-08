@@ -1,7 +1,7 @@
-# NMMR: 鼻黏膜菌群孟德尔随机化分析工具包
+# nasalMicrobiomeMR: 鼻黏膜菌群孟德尔随机化分析工具包
 
 ## 简介
-**NMMR** 是一个专为鼻黏膜菌群 MR 分析设计的一站式 R 包。它集成了数据标准化、批量 MR 分析（基于内置鼻黏膜菌群暴露数据）以及结果 Meta 分析功能，旨在简化繁琐的分析流程，让研究者能专注于生物学意义的挖掘。
+**nasalMicrobiomeMR** 是一个专为鼻黏膜菌群 MR 分析设计的一站式 R 包。它集成了数据标准化、批量 MR 分析（基于内置鼻黏膜菌群暴露数据）以及结果 Meta 分析功能，旨在简化繁琐的分析流程，让研究者能专注于生物学意义的挖掘。
 
 **作者**: 沧溟  
 **邮箱**: 20220123072@bucm.edu.cn
@@ -23,7 +23,6 @@
 
 ### 2. 自动化 MR 分析 (`run_nasal_mr`)
 利用**内置的鼻黏膜菌群暴露数据**，对一个或多个结局数据进行批量 MR 分析。
-- **数据安全**: 核心暴露数据经过 AES 加密，需使用激活码解锁分析功能。
 - **流程**:
     - 自动读取内置暴露数据。
     - 自动与用户提供的结局数据进行 Harmonize（对齐）。
@@ -44,55 +43,19 @@
 由于这是一个本地包，请使用以下方式安装：
 
 ```r
-install.packages("NMMR", repos = NULL, type = "source")
+install.packages("nasalMicrobiomeMR", repos = NULL, type = "source")
 ```
 
-*(注：请确保您的 R 环境已安装 `TwoSampleMR`, `data.table`, `dplyr`, `readr`, `RadialMR`, `forestploter`, `digest`, `openssl` 等依赖包)*
-
----
-
-## 激活与使用
-
-**本包的核心功能受到保护，初次使用需要激活。**
-
-### 1. 获取机器码
-
-安装包后，在 R 中运行以下命令获取您的唯一机器码：
-
-```r
-library(NMMR)
-get_machine_code()
-```
-
-将输出的字符串发送给作者，以获取激活码。
-
-### 2. 永久激活（推荐）
-
-只需运行一次激活函数，后续使用所有功能**无需再输入激活码**。
-
-```r
-# 假设作者提供的激活码为 "abcdef123456..."
-activate_nmmr("abcdef123456...")
-```
-
-### 3. 临时使用（可选）
-
-如果不希望永久激活，也可以在每次调用函数时手动传入 `activation_code` 参数。
-
-```r
-run_nasal_mr(activation_code = "abcdef123456...")
-```
+*(注：请确保您的 R 环境已安装 `TwoSampleMR`, `data.table`, `dplyr`, `readr`, `RadialMR`, `forestploter` 等依赖包)*
 
 ---
 
 ## 快速上手教程
 
-*(注：以下教程假设您已运行 `activate_nmmr` 完成了永久激活)*
-
 ### 场景一：处理单个原始 GWAS 数据并进行 MR 分析
 
 ```r
-library(NMMR)
+library(nasalMicrobiomeMR)
 
 # 1. 数据标准化
 # 假设您有一个原始文件 "raw_data.txt.gz"，想转换为标准格式 "outcome_std.csv"
@@ -103,6 +66,7 @@ standardize_gwas(
 )
 
 # 2. 运行 MR 分析
+# 使用内置的鼻黏膜菌群暴露数据，对刚刚生成的结局数据进行分析
 # 结果将保存在当前目录下的 "outcome_std" 文件夹中
 run_nasal_mr(outcome_files = "outcome_std.csv")
 ```
@@ -110,7 +74,7 @@ run_nasal_mr(outcome_files = "outcome_std.csv")
 ### 场景二：批量处理目录下所有结局文件
 
 ```r
-library(NMMR)
+library(nasalMicrobiomeMR)
 
 # 1. 假设当前目录下有多个已标准化的 CSV 文件 (outcome_A.csv, outcome_B.csv ...)
 # 直接运行函数，自动扫描并分析所有 CSV
@@ -120,7 +84,7 @@ run_nasal_mr()
 ### 场景三：多队列 Meta 分析
 
 ```r
-library(NMMR)
+library(nasalMicrobiomeMR)
 
 # 假设您已经分别跑完了中国、日本、韩国队列的 MR，并得到了对应的 OR 结果文件
 files <- c(
