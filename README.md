@@ -43,7 +43,7 @@
 由于这是一个本地包，请使用以下方式安装：
 
 ```r
-install.packages("nasalMicrobiomeMR", repos = NULL, type = "source")
+install.packages("NMMR", repos = NULL, type = "source")
 ```
 
 *(注：请确保您的 R 环境已安装 `TwoSampleMR`, `data.table`, `dplyr`, `readr`, `RadialMR`, `forestploter` 等依赖包)*
@@ -55,7 +55,7 @@ install.packages("nasalMicrobiomeMR", repos = NULL, type = "source")
 ### 场景一：处理单个原始 GWAS 数据并进行 MR 分析
 
 ```r
-library(nasalMicrobiomeMR)
+library(NMMR)
 
 # 1. 数据标准化
 # 假设您有一个原始文件 "raw_data.txt.gz"，想转换为标准格式 "outcome_std.csv"
@@ -74,7 +74,7 @@ run_nasal_mr(outcome_files = "outcome_std.csv")
 ### 场景二：批量处理目录下所有结局文件
 
 ```r
-library(nasalMicrobiomeMR)
+library(NMMR)
 
 # 1. 假设当前目录下有多个已标准化的 CSV 文件 (outcome_A.csv, outcome_B.csv ...)
 # 直接运行函数，自动扫描并分析所有 CSV
@@ -84,7 +84,7 @@ run_nasal_mr()
 ### 场景三：多队列 Meta 分析
 
 ```r
-library(nasalMicrobiomeMR)
+library(NMMR)
 
 # 假设您已经分别跑完了中国、日本、韩国队列的 MR，并得到了对应的 OR 结果文件
 files <- c(
