@@ -44,7 +44,7 @@
 本包为保护核心算法，仅提供编译后的二进制安装包。
 
 ### 1. 下载安装包
-请前往 GitHub 仓库（"https://github.com/CangmingDing/NMMR-release/"）的文件列表或 Releases 页面下载对应系统的安装包：
+请前往 GitHub 仓库（https://github.com/CangmingDing/NMMR-release）的文件列表或 Releases 页面下载对应系统的安装包：
 - **Windows 用户**: 下载 `NMMR-binary-windows-latest.zip`
 - **Mac 用户**: 下载 `NMMR-binary-macos-latest.zip` (或 .tgz)
 
