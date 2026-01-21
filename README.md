@@ -49,17 +49,17 @@
 - **Windows 用户**: 下载 `NMMR-binary-windows-latest.zip`
 - **Mac 用户**: 下载 `NMMR-binary-macos-latest.zip` (或 .tgz)
 
-> **注意**: 请直接下载文件，不要解压！
+> **注意**: 请直接下载文件，解压后安装NMMR_0.1.0.zip/NMMR_0.1.0.tgz！
 
 ### 2. 本地安装
 下载完成后，在 R 中运行以下命令进行安装（请替换为实际文件路径）：
 
 ```r
 # Windows 用户
-install.packages("C:/Downloads/NMMR-binary-windows-latest.zip", repos = NULL, type = "binary")
+install.packages("C:/Downloads/NMMR_0.1.0.zip", repos = NULL, type = "binary")
 
 # Mac 用户
-install.packages("~/Downloads/NMMR-binary-macos-latest.zip", repos = NULL, type = "binary")
+install.packages("~/Downloads/NMMR_0.1.0.tgz", repos = NULL, type = "binary")
 ```
 
 *(注：安装前请确保已安装 remotes 包以处理依赖，建议先运行 `install.packages("remotes")`)*
